@@ -1,5 +1,9 @@
 #region
 # Objectives needed to get lyrics:
+#  - detect song that playing on spotify
+#    To accomplish:
+#     - look into a spotify API or similar
+#     - get artist and song name
 #  - crawl website of song and get the lyrics
 #    To accomplish:
 #     - need to detect song spotify is playing
@@ -11,9 +15,6 @@
 #     - (?) try to predict/get next song that will played ahead of time
 #endregion
 
-#import scrapy
-#
-# from selenium import webdriver
-# from BeautifulSoup import BeautifulSoup
-# import pandas as pd
+from bs4 import BeautifulSoup
+
 

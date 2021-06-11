@@ -3,3 +3,6 @@
 
 # Editor directories and files
 .vscode
+
+#api tokens
+config.py 

@@ -7,7 +7,11 @@
 #  - crawl website of song and get the lyrics
 #    To accomplish:
 #     - need to detect song spotify is playing
-#     - place playing song into azlyrics.com search 
+#     - place playing song into azlyrics.com search
+#        NOTE: azlyrics.com
+#        <!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->
+#                > look into Genius API
+#                   >>> pip install lyricsgenius
 #  - display lytrics in app window
 #    To accomplish:
 #     - need create app window
@@ -15,7 +19,18 @@
 #     - (?) try to predict/get next song that will played ahead of time
 #endregion
 
-from bs4 import BeautifulSoup
+from lyricsgenius import Genius
+import config
 
+class Lyrics():
+    def textLyrics(songArtistList):
+        genius = Genius(config.token)      
+            # NOTE: 'token' is saved under a seperate config file, to create own token, visit: https://genius.com/api-clients
+
+        genius.verbose = False
+        
+        song = genius.search_song( songArtistList[0] , songArtistList[1] )
+        
+        return song.lyrics
 
 

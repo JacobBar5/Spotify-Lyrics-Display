@@ -1,5 +1,9 @@
 # local env files
-/env
+/env/
 
 # Editor directories and files
 .vscode
+__pycache__/
+
+#api tokens
+config.py 

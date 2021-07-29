@@ -12,12 +12,37 @@
 #     - need song change check
 #  - try to predict/get next song that will played ahead of time (?)
 #
+# Errors to be handeled:
+#  - no song playing
+#  - Spotify is playing advertisement
+#  - no internet connection
+#  - mutiple remasters of same song (year of release could resolve?)
+#
 #endregion
 
 from apis.getLyrics import Lyrics
+from apis.getSongInfo import SongInfo
+import apis.config as config
 
-songArtist = ["are you bored yet", "walLoWs"] 
+import time
+from pprint import pprint
 
-songLyrics = Lyrics.textLyrics( songArtist )
+while True:
+    current_song_info = SongInfo.getCurrentSong( config.SPOTIFY_TOKEN )
+    # pprint(current_song_info, indent = 3)
 
-print(songLyrics)
+
+    song_name = current_song_info['name']
+    print("\n ======= \nsong name: "+song_name)
+
+    song_artists_list = current_song_info['artists']
+    print("artists: "+song_artists_list)
+
+    song_link = current_song_info['link']
+    print("Spotify song link: "+song_link)
+
+    songArtist = [ song_name, song_artists_list ] 
+    songLyrics = Lyrics.textLyrics( songArtist )
+    print(songLyrics)
+
+    time.sleep(10)

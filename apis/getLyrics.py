@@ -3,7 +3,7 @@ import apis.config as config
 
 class Lyrics():
     def textLyrics(songArtistList):
-        genius = Genius(config.token)      
+        genius = Genius(config.GENIUS_TOKEN)
             # NOTE: 'token' is saved under a seperate config file, to create own token, visit: https://genius.com/api-clients
 
         genius.verbose = False

@@ -17,6 +17,8 @@
 #  - Spotify is playing advertisement
 #  - no internet connection
 #  - mutiple remasters of same song (year of release could resolve?)
+#  - expiration of Spotify token (?)
+#  - no lyrics for song (ex: intrumental versions)
 #
 #endregion
 

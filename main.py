@@ -22,6 +22,7 @@
 #
 #endregion
 
+
 from apis.getLyrics import Lyrics
 from apis.getSongInfo import SongInfo
 import apis.config as config

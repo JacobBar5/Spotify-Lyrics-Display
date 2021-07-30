@@ -1,7 +1,7 @@
 #region
 #
 # Objectives needed to get lyrics:
-#  - detect song that playing on spotify ----------> Spotify API used
+#  - detect song that playing on spotify ------------> Spotify API used
 #  - get artist and song name
 #  - crawl website of song and get the lyrics ----------> Genius API used instead
 #        NOTE: azlyrics.com

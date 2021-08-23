@@ -22,30 +22,57 @@
 #
 #endregion
 
+import time
+import kivy
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.uix.scrollview import ScrollView
 
 from apis.getLyrics import Lyrics
 from apis.getSongInfo import SongInfo
 import apis.config as config
 
-import time
-from pprint import pprint
+class MyLyricsApp(App):
+    def build(self):
 
-while True:
-    current_song_info = SongInfo.getCurrentSong( config.SPOTIFY_TOKEN )
-    # pprint(current_song_info, indent = 3)
+        song_NameArtist = ""+MyLyricsApp.printInfo()[0]+" -- "+MyLyricsApp.printInfo()[1]  ##need to make into 2 rows
+        # return Label ( text="".join(MyLyricsApp.printInfo()[0] ) )
+        return Label ( text = song_NameArtist)
+
+        return Label ( text="".join(MyLyricsApp.printInfo()[2] ) )
+
+    def printInfo():
+        current_song_info = SongInfo.getCurrentSong( config.SPOTIFY_TOKEN )
+
+        song_name = current_song_info['name']
+        song_artists_list = current_song_info['artists']
+        song_link = current_song_info['link']
+
+        songArtist = [ song_name, song_artists_list ] 
+        songLyrics = Lyrics.textLyrics( songArtist )
+        
+        return [song_name, song_artists_list, songLyrics]
+
+if __name__ == "__main__":
+    MyLyricsApp().run()
 
 
-    song_name = current_song_info['name']
-    print("\n ======= \nsong name: "+song_name)
+# while True:
+#     current_song_info = SongInfo.getCurrentSong( config.SPOTIFY_TOKEN )
+#     # pprint(current_song_info, indent = 3)
 
-    song_artists_list = current_song_info['artists']
-    print("artists: "+song_artists_list)
 
-    song_link = current_song_info['link']
-    print("Spotify song link: "+song_link)
+#     song_name = current_song_info['name']
+#     print("\n ======= \nsong name: "+song_name)
 
-    songArtist = [ song_name, song_artists_list ] 
-    songLyrics = Lyrics.textLyrics( songArtist )
-    print(songLyrics)
+#     song_artists_list = current_song_info['artists']
+#     print("artists: "+song_artists_list)
 
-    time.sleep(10)
+#     song_link = current_song_info['link']
+#     print("Spotify song link: "+song_link)
+
+#     songArtist = [ song_name, song_artists_list ] 
+#     songLyrics = Lyrics.textLyrics( songArtist )
+#     print(songLyrics)
+
+#     time.sleep(10)
